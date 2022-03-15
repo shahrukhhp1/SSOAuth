@@ -1,0 +1,22 @@
+﻿
+
+@if (!string.IsNullOrEmpty(ViewBag.Message))
+{
+    var color = "Blue";
+    if (ViewBag.IsError)
+    {
+        color = "Red";
+    }
+
+    <h3 style="color:@color">
+        @ViewBag.Message
+    </h3>
+}
+
+<form action="@Url.Action("Login")" method="post" class="form-control">
+    <input type="text" name="UserName" value="" placeholder="Login Id" />
+    <input type="password" name="Password" value="" placeholder="Password" />
+    <input type="hidden" name="RedirectURL" value="@ViewBag.RedirectURL"/>
+    <input type="hidden" name="ClientId" value="@ViewBag.ClientId"/>
+    <button type="submit">Login</button>
+</form>

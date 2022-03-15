@@ -1,0 +1,13 @@
+﻿@model SSOAuth.Models.VMs.UserAccessVM
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<form action="@Url.Action("Create")" method="post">
+    <label class="label">@Model.UserName</label>
+    <input class="form-control" type="text" name="Password" value="" placeholder="Edit Password" />
+    <input class="form-control" type="email" name="Email" value="@Model.Email" placeholder="Email" />
+    <input class="form-control" type="text" name="FirstName" value="@Model.FirstName" placeholder="First Name" />
+    <input class="form-control" type="text" name="LastName" value="@Model.LastName" placeholder="Last Name" />
+    <button type="submit">Submit</button>
+</form>

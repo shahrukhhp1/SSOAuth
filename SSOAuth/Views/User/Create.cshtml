@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewData["Title"] = "Create";
+}
+<form action="@Url.Action("Create")" method="post">
+    <input type="text" name="UserName" value="" placeholder="Login Id"/>
+    <input type="password" name="Password" value="" placeholder="Password"/>
+    <input type="email" name="Email" value="" placeholder="Email"/>
+    <input type="text" name="FirstName" value="" placeholder="First Name"/>
+    <input type="text" name="LastName" value="" placeholder="Last Name"/>
+    <button type="submit">Submit</button>
+</form>
