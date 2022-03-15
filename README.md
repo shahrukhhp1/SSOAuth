@@ -15,13 +15,15 @@ In middleware of current system, check for cookies there is no bearer token, pro
 
 > Redirect to  “{ssoAuthDoman} /o/oauth2/v1/auth” with params :
  
-`client_id,
+```
+client_id,
 
 scope, (all)
 
 redirect_uri, (this should be exact same as provider's domain entered in DB)
 
-state, (this is the redirect URL where this system should redirect to after authentication)`
+state, (this is the redirect URL where this system should redirect to after authentication)
+```
 
 
 
@@ -64,6 +66,25 @@ In response to this you will get :
 ```
 
 
-This shall be saved for current user.
+This shall be saved for current user in cookies using something like following method:
+
+```
+private async Task<bool> SetLoginCookiesAndClaims(string token)
+        {
+            var handler = new JwtSecurityTokenHandler();
+            var decodedValue = handler.ReadJwtToken(token);
+
+
+            var claimsIdentity = new ClaimsIdentity(
+  decodedValue.Claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            var authProperties = new AuthenticationProperties();
+
+            await _httpContextAccessor.HttpContext.SignInAsync(
+              CookieAuthenticationDefaults.AuthenticationScheme,
+              new ClaimsPrincipal(claimsIdentity),
+              authProperties);
+            return true;
+        }
+```
 
 
